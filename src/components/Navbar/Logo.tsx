@@ -1,9 +1,12 @@
 export default function Logo() {
     return (
-      <div className="flex items-center gap-2">
-        <div className="w-4 h-4 bg-blue-600 rounded-sm"></div>
-        <h1 className="text-lg font-semibold">Osmon Ilova</h1>
-      </div>
+      <a href="/" className="flex items-center gap-2 flex-shrink-0">
+        <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-400 rounded-lg flex items-center justify-center">
+          <span className="text-white font-bold text-lg">O</span>
+        </div>
+        <h1 className="text-xl font-bold text-gray-900 hidden sm:block">
+          Osmon Ilova
+        </h1>
+      </a>
     );
   }
-  
