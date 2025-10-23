@@ -105,7 +105,7 @@ export default function FeaturedProductsSection() {
 
                   {/* Quick View Button */}
                   <motion.button
-                    className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white text-gray-900 px-6 py-2 text-sm font-medium hover:bg-gray-100 transition-colors"
+                    className="absolute bottom-4 left-1/2 -translate-x-1/2 hover:cursor-pointer bg-white text-gray-900 px-6 py-2 text-sm font-medium hover:bg-gray-100 transition-colors"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{
                       opacity: hoveredId === product.id ? 1 : 0,
@@ -117,7 +117,7 @@ export default function FeaturedProductsSection() {
                       console.log("Quick view:", product);
                     }}
                   >
-                    Quick View
+                    Add to Cart
                   </motion.button>
                 </div>
 
@@ -149,7 +149,7 @@ export default function FeaturedProductsSection() {
         <div className="flex justify-center gap-4 mt-10">
           <button 
             onClick={prevPage}
-            className="w-12 h-12 border-2 border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-colors"
+            className="w-12 h-12 border-2 border-gray-300 flex items-center hover:cursor-pointer justify-center hover:bg-gray-100 transition-colors"
           >
             <svg
               className="w-5 h-5 text-gray-600"
@@ -167,7 +167,7 @@ export default function FeaturedProductsSection() {
           </button>
           <button 
             onClick={nextPage}
-            className="w-12 h-12 border-2 border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-colors"
+            className="w-12 h-12 border-2 border-gray-300 flex items-center hover:cursor-pointer justify-center hover:bg-gray-100 transition-colors"
           >
             <svg
               className="w-5 h-5 text-gray-600"

@@ -110,7 +110,7 @@ export default function CategoriesSection() {
         <div className="flex justify-center gap-4 mt-10">
           <button 
             onClick={prevPage}
-            className="w-12 h-12 border-2 border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-colors"
+            className="w-12 h-12 border-2 border-gray-300 flex hover:cursor-pointer items-center justify-center hover:bg-gray-100 transition-colors"
           >
             <svg
               className="w-5 h-5 text-gray-600"
@@ -128,7 +128,7 @@ export default function CategoriesSection() {
           </button>
           <button 
             onClick={nextPage}
-            className="w-12 h-12 border-2 border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-colors"
+            className="w-12 h-12 border-2 border-gray-300 flex hover:cursor-pointer items-center justify-center hover:bg-gray-100 transition-colors"
           >
             <svg
               className="w-5 h-5 text-gray-600"
