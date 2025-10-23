@@ -67,7 +67,7 @@ export default function BlogSection() {
 
                 {/* Read More Button */}
                 <motion.button
-                  className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white text-gray-900 px-6 py-2 text-sm font-medium hover:bg-gray-100 transition-colors"
+                  className="absolute bottom-4 left-1/2 -translate-x-1/2 hover:cursor-pointer bg-white text-gray-900 px-6 py-2 text-sm font-medium hover:bg-gray-100 transition-colors"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{
                     opacity: hoveredId === post.id ? 1 : 0,

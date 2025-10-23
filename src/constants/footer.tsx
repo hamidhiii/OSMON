@@ -1,4 +1,4 @@
-import { Mail, Phone, MessageCircle, Instagram, Facebook, Twitter, Youtube, ChevronUp } from 'lucide-react';
+import {  Instagram, Facebook, Twitter, Youtube, } from 'lucide-react';
 
 export const FOOTER_DATA = {
     customerService: {
@@ -38,7 +38,7 @@ export const FOOTER_DATA = {
       ],
     },
     contact: {
-      email: 'info@decormarket.com',
+      email: 'info@osmon.com',
       phone: '516-945-8000',
       hours: 'Monday - Friday 9am - 4pm EST',
     },
@@ -50,8 +50,8 @@ export const FOOTER_DATA = {
         { icon: Twitter, href: '#twitter', label: 'Twitter' },
         { icon: Youtube, href: '#youtube', label: 'YouTube' },
       ],
-      hashtag: '#decormarkethome',
-      handle: '@decormarkethome',
+      hashtag: '#osmon',
+      handle: '@osmon',
     },
     newsletter: {
       title: 'Join our VIP list for exclusive offers, new arrivals & more.',
@@ -59,8 +59,8 @@ export const FOOTER_DATA = {
     },
     legal: {
       copyright: '2025',
-      companyName: 'DECOR MARKET',
-      rating: 'decormarket.com has a Shopper Approved rating of 4.8/5 based on 2832 ratings and reviews.',
+      companyName: 'OSMON',
+      rating: 'osmon.com has a Shopper Approved rating of 4.8/5 based on 2832 ratings and reviews.',
       links: [
         { text: 'Terms of Use', href: '#terms' },
         { text: 'Privacy', href: '#privacy' },

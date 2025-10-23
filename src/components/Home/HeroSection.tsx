@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const slides = [
   {
@@ -27,6 +28,11 @@ const slides = [
 export default function HeroSection() {
   const [current, setCurrent] = useState(0);
 
+  const navigate = useNavigate()
+
+  const handleShopCollection = () => {
+    navigate('/allproducts')
+  }
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
@@ -80,7 +86,8 @@ export default function HeroSection() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
-              className="px-10 py-4 bg-white text-gray-900 rounded-sm font-medium text-lg hover:bg-gray-100 transition-colors shadow-2xl"
+              onClick={handleShopCollection}
+              className="px-10 py-4 bg-white text-gray-900 rounded-sm font-medium text-lg hover:cursor-pointer hover:bg-gray-100 transition-colors shadow-2xl"
             >
               Shop Collection
             </motion.button>
@@ -88,7 +95,7 @@ export default function HeroSection() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
-              className="px-10 py-4 bg-transparent border-2 border-white text-white rounded-sm font-medium text-lg hover:bg-white/10 transition-all backdrop-blur-sm"
+              className="px-10 py-4 bg-transparent border-2 border-white text-white hover:cursor-pointer rounded-sm font-medium text-lg hover:bg-white/10 transition-all backdrop-blur-sm"
             >
               Explore More
             </motion.button>
@@ -114,14 +121,14 @@ export default function HeroSection() {
       {/* Navigation Arrows */}
       <button
         onClick={() => setCurrent((prev) => (prev - 1 + slides.length) % slides.length)}
-        className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all"
+        className="absolute left-6 top-1/2 hover:cursor-pointer -translate-y-1/2 z-20 w-12 h-12 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all"
       >
         ←
       </button>
       
       <button
         onClick={() => setCurrent((prev) => (prev + 1) % slides.length)}
-        className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all"
+        className="absolute right-6 top-1/2 hover:cursor-pointer -translate-y-1/2 z-20 w-12 h-12 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all"
       >
         →
       </button>

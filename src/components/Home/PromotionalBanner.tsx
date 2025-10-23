@@ -53,7 +53,7 @@ export default function PromotionalBanner() {
               Festive season starts whenever the spirit moves you. Go ahead, suit your fancy.
             </motion.p>
             <motion.button
-              className="px-10 py-3 border-2 border-white text-white font-light tracking-wider uppercase hover:bg-white hover:text-gray-900 transition-all duration-300"
+              className="px-10 py-3 border-2 border-white text-white hover:cursor-pointer font-light tracking-wider uppercase hover:bg-white hover:text-gray-900 transition-all duration-300"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}

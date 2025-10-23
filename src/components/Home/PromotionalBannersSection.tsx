@@ -51,7 +51,7 @@ export default function PromotionalBannersSection() {
                 </p>
               </motion.div>
               <motion.button
-                className="px-10 py-3 border-2 border-white text-white font-light tracking-wider uppercase hover:bg-white hover:text-[#b8a390] transition-all duration-300 rounded-full"
+                className="px-10 py-3 border-2 border-white hover:cursor-pointer text-white font-light tracking-wider uppercase hover:bg-white hover:text-[#b8a390] transition-all duration-300 rounded-full"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -107,4 +107,4 @@ export default function PromotionalBannersSection() {
       </div>
     </section>
   );
-}
+} 
