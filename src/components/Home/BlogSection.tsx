@@ -44,7 +44,7 @@ export default function BlogSection() {
               onMouseLeave={() => setHoveredId(null)}
             >
               {/* Image */}
-              <div className="relative w-full aspect-[4/3] overflow-hidden bg-gray-100">
+              <div className="relative w-full aspect-4/3 overflow-hidden bg-gray-100">
                 <motion.img
                   src={post.image}
                   alt={post.title}
