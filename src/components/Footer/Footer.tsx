@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FOOTER_DATA } from '@/constants/footer';
 import { Mail, Phone, MessageCircle, ChevronUp } from 'lucide-react';
+import { FOOTER_DATA } from '@/constants/footer';
 
 
 
@@ -54,11 +54,9 @@ const FooterSection: React.FC<{ title: string; children: React.ReactNode; delay?
 );
 
 const SocialLinks: React.FC = () => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
   return (
     <div className="flex gap-4 mb-4">
-      {FOOTER_DATA.social.platforms.map((platform, index) => (
+      {FOOTER_DATA.social.platforms.map((platform) => (
         <motion.a
           key={platform.label}
           href={platform.href}
@@ -66,8 +64,6 @@ const SocialLinks: React.FC = () => {
           className="text-gray-700 hover:text-gray-900 transition-colors duration-300"
           initial="rest"
           whileHover="hover"
-          onMouseEnter={() => setHoveredIndex(index)}
-          onMouseLeave={() => setHoveredIndex(null)}
         >
           <motion.div
             variants={iconHover}
@@ -202,7 +198,6 @@ const ContactInfo: React.FC = () => {
 };
 
 const ScrollToTop: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(true);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });

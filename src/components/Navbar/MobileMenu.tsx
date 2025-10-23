@@ -22,6 +22,11 @@ export default function MobileMenu({ setActiveLink }: MobileMenuProps) {
     setOpen(false);
     setSelectedMenu(null);
   };
+  const handleLinkClick = (item: string) => {
+    setActiveLink(item); // Используем setActiveLink
+    handleClose();
+  };
+
 
   return (
     <div className="md:hidden">
@@ -114,7 +119,7 @@ export default function MobileMenu({ setActiveLink }: MobileMenuProps) {
                           <li key={i}>
                             <a
                               href="#"
-                              onClick={handleClose}
+                              onClick={() => handleLinkClick(item)}
                               className="block py-2 text-gray-700 hover:text-gray-900 transition-colors"
                             >
                               {item}
