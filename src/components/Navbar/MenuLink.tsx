@@ -1,4 +1,5 @@
 import { MENU_LINKS } from "@/constants/menulink";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 interface MenuLinkProps {
@@ -18,20 +19,19 @@ export default function MenuLink({ activeLink, setActiveLink, setHoveredMenu }: 
       <div className="max-w-7xl mx-auto px-4">
         <ul className="flex items-center gap-8 py-3">
           {MENU_LINKS.map((link) => (
-            <li 
+            <li
               key={link.name}
               onMouseEnter={() => setHoveredMenu(link.name)}
               onMouseLeave={() => setHoveredMenu(null)}
               className="relative"
             >
-              <a
-                href={link.href}
+              <Link
+                to={link.href}
                 onClick={() => setActiveLink(link.name)}
-                className={`text-sm font-medium transition-colors relative ${
-                  activeLink === link.name
+                className={`text-sm font-medium transition-colors relative ${activeLink === link.name
                     ? "text-blue-600"
                     : "text-gray-700 hover:text-blue-600"
-                }`}
+                  }`}
               >
                 {link.name}
                 {activeLink === link.name && (
@@ -43,7 +43,7 @@ export default function MenuLink({ activeLink, setActiveLink, setHoveredMenu }: 
                     transition={{ duration: 0.3 }}
                   />
                 )}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

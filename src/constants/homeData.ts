@@ -200,7 +200,7 @@
     { 
       id: 6, 
       name: "Botanical Wall Art", 
-      image: "https://images.unsplash.com/photo-1513519245088-0e12902e35ca?w=600&q=80" 
+      image: "https://www.frenchbedroom.co.uk/media/catalog/product/b/o/botanical-beauty-art_ro.jpg?store=default&image-type=image" 
     },
     { 
       id: 7, 

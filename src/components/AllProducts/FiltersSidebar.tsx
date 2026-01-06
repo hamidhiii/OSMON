@@ -80,7 +80,7 @@ export default function FiltersSidebar({
                   <button
                     key={link.name}
                     onClick={() => setSelectedCategory(link.name)}
-                    className={`block w-full text-left py-2 px-3 rounded text-sm transition-colors ${
+                    className={`block w-full text-left py-2 px-3 rounded text-sm  transition-colors ${
                       selectedCategory === link.name
                         ? "bg-blue-50 text-blue-600"
                         : "text-gray-700 hover:bg-gray-50"
