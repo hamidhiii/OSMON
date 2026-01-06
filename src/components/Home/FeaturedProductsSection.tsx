@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { featuredProducts } from "@/constants/homeData";
+import { useCart } from "@/context/CartContext";
 
 
 
@@ -18,6 +20,8 @@ export default function FeaturedProductsSection() {
   const [currentPage, setCurrentPage] = useState(0);
   const [loading, setLoading] = useState(true);
   const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const { addToCart } = useCart();
+  const navigate = useNavigate();
   const itemsPerPage = 4;
   const totalPages = Math.ceil(featuredProducts.length / itemsPerPage);
 
@@ -92,7 +96,7 @@ export default function FeaturedProductsSection() {
                     }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
                   />
-                  
+
                   {/* Overlay on hover */}
                   <motion.div
                     className="absolute inset-0 bg-black/10"
@@ -113,8 +117,13 @@ export default function FeaturedProductsSection() {
                     }}
                     transition={{ duration: 0.3 }}
                     onClick={(e) => {
-                      e.preventDefault();
-                      console.log("Quick view:", product);
+                      e.stopPropagation();
+                      addToCart({
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        image: product.image,
+                      });
                     }}
                   >
                     Add to Cart
@@ -122,7 +131,7 @@ export default function FeaturedProductsSection() {
                 </div>
 
                 {/* Product Info */}
-                <div className="p-4 text-left">
+                <div className="p-4 text-left" onClick={() => navigate(`/product/${product.id}`)}>
                   <h3 className="font-light text-gray-800 text-base mb-2 uppercase tracking-wide">
                     {product.name}
                   </h3>
@@ -147,7 +156,7 @@ export default function FeaturedProductsSection() {
 
         {/* Navigation Arrows */}
         <div className="flex justify-center gap-4 mt-10">
-          <button 
+          <button
             onClick={prevPage}
             className="w-12 h-12 border-2 border-gray-300 flex items-center hover:cursor-pointer justify-center hover:bg-gray-100 transition-colors"
           >
@@ -165,7 +174,7 @@ export default function FeaturedProductsSection() {
               />
             </svg>
           </button>
-          <button 
+          <button
             onClick={nextPage}
             className="w-12 h-12 border-2 border-gray-300 flex items-center hover:cursor-pointer justify-center hover:bg-gray-100 transition-colors"
           >
@@ -191,11 +200,10 @@ export default function FeaturedProductsSection() {
             <button
               key={index}
               onClick={() => setCurrentPage(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentPage 
-                  ? "bg-gray-800 w-8" 
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentPage
+                  ? "bg-gray-800 w-8"
                   : "bg-gray-300 hover:bg-gray-400"
-              }`}
+                }`}
             />
           ))}
         </div>

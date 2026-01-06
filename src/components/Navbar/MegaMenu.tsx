@@ -1,4 +1,5 @@
 import { MENU_LINKS } from "@/constants/menulink";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface MegaMenuProps {
@@ -8,6 +9,12 @@ interface MegaMenuProps {
 
 export default function MegaMenu({ hoveredMenu, setHoveredMenu }: MegaMenuProps) {
   const currentMenu = MENU_LINKS.find(link => link.name === hoveredMenu);
+
+  // Helper function to convert menu item to URL
+  const getItemUrl = (categoryName: string, itemName: string) => {
+    const categorySlug = categoryName.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and');
+    return `/category/${categorySlug}`;
+  };
 
   return (
     <AnimatePresence>
@@ -31,23 +38,24 @@ export default function MegaMenu({ hoveredMenu, setHoveredMenu }: MegaMenuProps)
                   <ul className="space-y-2">
                     {column.items.map((item, i) => (
                       <li key={i}>
-                        <a 
-                          href="#" 
+                        <Link
+                          to={getItemUrl(currentMenu.name, item)}
                           className="text-sm text-gray-600 hover:text-blue-600 transition-colors block py-1"
+                          onClick={() => setHoveredMenu(null)}
                         >
                           {item}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
                 </div>
               ))}
-              
+
               {/* Featured Image Column */}
               <div className="bg-gray-100 rounded-lg overflow-hidden">
-                <img 
-                  src={currentMenu.featuredImage} 
-                  alt="Featured" 
+                <img
+                  src={currentMenu.featuredImage}
+                  alt="Featured"
                   className="w-full h-full object-cover"
                 />
               </div>
