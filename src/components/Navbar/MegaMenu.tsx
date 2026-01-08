@@ -13,7 +13,7 @@ export default function MegaMenu({ hoveredMenu, setHoveredMenu }: MegaMenuProps)
   // Helper function to convert menu item to URL
   const getItemUrl = (categoryName: string, itemName: string) => {
     const categorySlug = categoryName.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and');
-    return `/category/${categorySlug}`;
+    return `/category/${categorySlug}?filter=${encodeURIComponent(itemName)}`;
   };
 
   return (

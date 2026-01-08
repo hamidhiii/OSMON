@@ -16,6 +16,7 @@ import ProfilePage from "./pages/ProfilePage";
 import SubcategoryPage from "./pages/SubcategoryPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import WishlistPage from "./pages/WishlistPage";
+import ScrollToTop from "./components/ScrollToTop";
 
 
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
     <WishlistProvider>
       <CartProvider>
         <Navbar />
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/allproducts" element={<ProductsPage />} />

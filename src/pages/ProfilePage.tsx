@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { User, Mail, Phone, MapPin, Package, LogOut } from 'lucide-react';
+import { Mail, Phone, MapPin, Package, LogOut } from 'lucide-react';
 
 export default function ProfilePage() {
     const navigate = useNavigate();
@@ -129,8 +129,8 @@ export default function ProfilePage() {
                                             </div>
                                             <div className="flex items-center gap-4">
                                                 <span className={`px-3 py-1 rounded-full text-sm font-medium ${order.status === 'Delivered'
-                                                        ? 'bg-green-100 text-green-800'
-                                                        : 'bg-blue-100 text-blue-800'
+                                                    ? 'bg-green-100 text-green-800'
+                                                    : 'bg-blue-100 text-blue-800'
                                                     }`}>
                                                     {order.status}
                                                 </span>
