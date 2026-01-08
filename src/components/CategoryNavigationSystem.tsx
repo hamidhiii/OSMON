@@ -2,8 +2,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { SlidersHorizontal, X } from "lucide-react";
 
-import { categories,type Category } from "../constants/categories";
-import { allProducts,type Product } from "../constants/products";
+import { categories, type Category } from "../constants/categories";
+import { allProducts } from "../constants/products";
 import { filterOptions } from "../constants/filters";
 
 import CategoryGrid from "./Category/CategoryGrid";
@@ -20,8 +20,6 @@ export default function CategoryNavigationSystem() {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState<SortOption>("featured");
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
-  const [categoryHoveredId, setCategoryHoveredId] = useState<string | null>(null);
 
   // --- Навигация ---
   const navigateToCategory = (slug: string) => {
@@ -99,8 +97,6 @@ export default function CategoryNavigationSystem() {
 
           <CategoryGrid
             categories={categories}
-            categoryHoveredId={categoryHoveredId}
-            setCategoryHoveredId={setCategoryHoveredId}
             navigateToCategory={navigateToCategory}
           />
         </div>
@@ -206,11 +202,6 @@ export default function CategoryNavigationSystem() {
             {/* Сетка товаров */}
             <ProductGrid
               sortedProducts={sortedProducts}
-              hoveredId={hoveredId}
-              setHoveredId={setHoveredId}
-              selectedFilters={selectedFilters}
-              toggleFilter={toggleFilter}
-              clearFilters={clearFilters}
             />
           </main>
         </div>

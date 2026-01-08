@@ -10,6 +10,7 @@ export default function ProductDetailPage() {
     const { id } = useParams();
     const navigate = useNavigate();
     const { addToCart } = useCart();
+    const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
 
     const product = allProducts.find(p => p.id === Number(id));
     const [selectedImage, setSelectedImage] = useState(0);
@@ -183,11 +184,27 @@ export default function ProductDetailPage() {
                             </motion.button>
 
                             <motion.button
-                                className="px-6 py-4 border-2 border-gray-300 rounded-lg hover:border-gray-900 transition-colors"
+                                onClick={() => {
+                                    if (isInWishlist(product.id)) {
+                                        removeFromWishlist(product.id);
+                                    } else {
+                                        addToWishlist({
+                                            id: product.id,
+                                            name: product.name,
+                                            price: product.price,
+                                            image: product.image,
+                                            category: product.category
+                                        });
+                                    }
+                                }}
+                                className={`px-6 py-4 border-2 rounded-lg transition-colors ${isInWishlist(product.id)
+                                    ? 'border-red-500 bg-red-50 text-red-500'
+                                    : 'border-gray-300 hover:border-gray-900 text-gray-900'
+                                    }`}
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                             >
-                                <Heart className="w-5 h-5" />
+                                <Heart className={`w-5 h-5 ${isInWishlist(product.id) ? 'fill-current' : ''}`} />
                             </motion.button>
 
                             <motion.button

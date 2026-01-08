@@ -1,13 +1,13 @@
 import { categories } from "@/constants/homeData";
 import { motion } from "framer-motion";
 import { useState } from "react";
-
-
+import { useNavigate } from "react-router-dom";
 
 export default function CategoriesSection() {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState(0);
-  
+  const navigate = useNavigate();
+
   const itemsPerPage = 4;
   const totalPages = Math.ceil(categories.length / itemsPerPage);
 
@@ -59,6 +59,7 @@ export default function CategoriesSection() {
               transition={{ delay: index * 0.1, duration: 0.6 }}
               onMouseEnter={() => setHoveredId(category.id)}
               onMouseLeave={() => setHoveredId(null)}
+              onClick={() => navigate(category.href)}
             >
               <motion.div
                 className="absolute inset-0"
@@ -108,7 +109,7 @@ export default function CategoriesSection() {
 
         {/* Navigation Arrows */}
         <div className="flex justify-center gap-4 mt-10">
-          <button 
+          <button
             onClick={prevPage}
             className="w-12 h-12 border-2 border-gray-300 flex hover:cursor-pointer items-center justify-center hover:bg-gray-100 transition-colors"
           >
@@ -126,7 +127,7 @@ export default function CategoriesSection() {
               />
             </svg>
           </button>
-          <button 
+          <button
             onClick={nextPage}
             className="w-12 h-12 border-2 border-gray-300 flex hover:cursor-pointer items-center justify-center hover:bg-gray-100 transition-colors"
           >
@@ -152,11 +153,10 @@ export default function CategoriesSection() {
             <button
               key={index}
               onClick={() => setCurrentPage(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentPage 
-                  ? "bg-gray-800 w-8" 
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentPage
+                  ? "bg-gray-800 w-8"
                   : "bg-gray-300 hover:bg-gray-400"
-              }`}
+                }`}
             />
           ))}
         </div>

@@ -3,15 +3,11 @@ import type { Category } from "../../constants/categories";
 
 interface CategoryGridProps {
   categories: Category[];
-  categoryHoveredId: string | null;
-  setCategoryHoveredId: (id: string | null) => void;
   navigateToCategory: (slug: string) => void;
 }
 
 export default function CategoryGrid({
   categories,
-  categoryHoveredId,
-  setCategoryHoveredId,
   navigateToCategory,
 }: CategoryGridProps) {
   return (
@@ -20,8 +16,6 @@ export default function CategoryGrid({
         <motion.div
           key={category.id}
           className="relative group cursor-pointer overflow-hidden rounded-2xl shadow-sm hover:shadow-md bg-gray-50"
-          onHoverStart={() => setCategoryHoveredId(category.id)}
-          onHoverEnd={() => setCategoryHoveredId(null)}
           onClick={() => navigateToCategory(category.slug)}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

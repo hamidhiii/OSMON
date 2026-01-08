@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, MessageCircle, ChevronUp } from 'lucide-react';
 import { FOOTER_DATA } from '@/constants/footer';
-
-
-
 
 // Animation variants
 const fadeInUp = {
@@ -155,7 +152,7 @@ const ContactInfo: React.FC = () => {
       variants={fadeInUp}
     >
       <h3 className="text-gray-900 font-semibold text-sm mb-4 tracking-wide">CONTACT US</h3>
-      
+
       <motion.a
         href={`mailto:${FOOTER_DATA.contact.email}`}
         className="flex items-center gap-3 text-gray-600 hover:text-gray-900 transition-colors duration-300"
@@ -198,24 +195,43 @@ const ContactInfo: React.FC = () => {
 };
 
 const ScrollToTop: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.scrollY > 300) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <motion.button
-      onClick={scrollToTop}
-      className="fixed bottom-8 right-8 bg-gray-900 text-white p-3 rounded-full shadow-lg z-50"
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{ opacity: 1, scale: 1 }}
-      whileHover={{ scale: 1.1, backgroundColor: '#374151' }}
-      whileTap={{ scale: 0.9 }}
-      transition={{ duration: 0.3 }}
-      aria-label="Scroll to top"
-    >
-      <ChevronUp size={24} />
-    </motion.button>
+    <AnimatePresence>
+      {isVisible && (
+        <motion.button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 bg-gray-900 text-white p-3 rounded-full shadow-lg z-50"
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0 }}
+          whileHover={{ scale: 1.1, backgroundColor: '#374151' }}
+          whileTap={{ scale: 0.9 }}
+          transition={{ duration: 0.3 }}
+          aria-label="Scroll to top"
+        >
+          <ChevronUp size={24} />
+        </motion.button>
+      )}
+    </AnimatePresence>
   );
 };
 
@@ -268,7 +284,7 @@ const Footer: React.FC = () => {
           {/* Newsletter & Social */}
           <div className="lg:col-span-6 space-y-8">
             <Newsletter />
-            
+
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -316,7 +332,7 @@ const Footer: React.FC = () => {
               Copyright © {FOOTER_DATA.legal.copyright} By {FOOTER_DATA.legal.companyName}.
             </p>
             <p className="text-gray-500 text-xs">{FOOTER_DATA.legal.rating}</p>
-            
+
             <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 pt-4">
               {FOOTER_DATA.legal.links.map((link, index) => (
                 <React.Fragment key={link.text}>

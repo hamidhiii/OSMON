@@ -3,17 +3,10 @@ import type { Product } from "../../constants/products";
 
 interface ProductGridProps {
   sortedProducts: Product[];
-  hoveredId: string | null;
-  setHoveredId: (id: string | null) => void;
-  selectedFilters: string[];
-  toggleFilter: (filter: string) => void;
-  clearFilters: () => void;
 }
 
 export default function ProductGrid({
   sortedProducts,
-  hoveredId,
-  setHoveredId,
 }: ProductGridProps) {
   if (sortedProducts.length === 0) {
     return <p className="text-gray-500 text-center">No products found.</p>;
@@ -29,8 +22,6 @@ export default function ProductGrid({
         <motion.div
           key={product.id}
           className="bg-white rounded-2xl overflow-hidden border shadow-sm hover:shadow-md cursor-pointer"
-          onHoverStart={() => setHoveredId(product.id)}
-          onHoverEnd={() => setHoveredId(null)}
         >
           <div className="relative">
             <img

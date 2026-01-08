@@ -1,33 +1,35 @@
 import { useState } from "react";
 import { ChevronRight, Home, X, SlidersHorizontal } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { categories, type Category } from "../constants/categories";
+import { allProducts, type Product } from "../constants/products";
+import { filterOptions } from "../constants/filters";
 
-
-
-export default function CategoryNavigationSystem() {
-  const [currentView, setCurrentView] = useState("home");
-  const [currentCategory, setCurrentCategory] = useState(null);
-  const [selectedFilters, setSelectedFilters] = useState([]);
+export default function CategoryPage() {
+  const [currentView, setCurrentView] = useState<"home" | "category">("home");
+  const [currentCategory, setCurrentCategory] = useState<Category | null>(null);
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState("featured");
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
-  const [hoveredId, setHoveredId] = useState(null);
-  const [categoryHoveredId, setCategoryHoveredId] = useState(null);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [categoryHoveredId, setCategoryHoveredId] = useState<string | null>(null);
 
-  const navigateToCategory = (slug) => {
+  const navigateToCategory = (slug: string) => {
     const category = categories.find(c => c.slug === slug);
+    if (!category) return;
     setCurrentCategory(category);
     setCurrentView("category");
     setSelectedFilters([]);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const navigateToHome = () => {  
+  const navigateToHome = () => {
     setCurrentView("home");
     setCurrentCategory(null);
     setSelectedFilters([]);
   };
 
-  const filteredProducts = allProducts.filter(p => {
+  const filteredProducts = allProducts.filter((p: Product) => {
     if (!currentCategory) return false;
     if (p.category !== currentCategory.slug) return false;
     if (selectedFilters.length === 0) return true;
@@ -35,16 +37,18 @@ export default function CategoryNavigationSystem() {
   });
 
   const sortedProducts = [...filteredProducts].sort((a, b) => {
+    const priceA = parseFloat(a.price.replace(/[$,]/g, ""));
+    const priceB = parseFloat(b.price.replace(/[$,]/g, ""));
     if (sortBy === "price-low") {
-      return parseFloat(a.price.replace(/[$,]/g, "")) - parseFloat(b.price.replace(/[$,]/g, ""));
+      return priceA - priceB;
     }
     if (sortBy === "price-high") {
-      return parseFloat(b.price.replace(/[$,]/g, "")) - parseFloat(a.price.replace(/[$,]/g, ""));
+      return priceB - priceA;
     }
     return 0;
   });
 
-  const toggleFilter = (filter) => {
+  const toggleFilter = (filter: string) => {
     setSelectedFilters(prev =>
       prev.includes(filter) ? prev.filter(f => f !== filter) : [...prev, filter]
     );
